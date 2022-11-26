@@ -17,7 +17,7 @@ const MenuIcon = styled.img`
 
 `
 
-const Title = styled.img`
+const HeaderTitle = styled.img`
 
 `
 
@@ -31,7 +31,7 @@ export const Navbar = () => {
   return (
     <Container>
       <MenuIcon src='./assets/menu.svg'/>
-      <Title src='./assets/title.svg'/>
+      <HeaderTitle src='./assets/title.svg'/>
       <User src='./assets/user.svg'/>
     </Container>
   )

@@ -1,8 +1,48 @@
+body {
+  background-color: #242424;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../public/assets/fonts/BebasNeue-Bold.woff2") format("woff2"),
+    url("../public/assets/fonts/BebasNeue-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../public/assets/fonts/BebasNeue-Light.woff2") format("woff2"),
+    url("../public/assets/fonts/BebasNeue-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bebas Neue Book";
+  src: url("../public/assets/fonts/BebasNeue-Book.woff2") format("woff2"),
+    url("../public/assets/fonts/BebasNeue-Book.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Bebas Neue";
   src: url("../public/assets/fonts/BebasNeue-Regular.woff2") format("woff2"),
     url("../public/assets/fonts/BebasNeue-Regular.woff") format("woff");
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../public/assets/fonts/BebasNeue-Thin.woff2") format("woff2"),
+    url("../public/assets/fonts/BebasNeue-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
