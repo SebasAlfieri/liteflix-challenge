@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu'
+
 
 
 const Container = styled.div`
@@ -33,6 +35,8 @@ export const Navbar = () => {
       <MenuIcon src='./assets/menu.svg'/>
       <HeaderTitle src='./assets/title.svg'/>
       <User src='./assets/user.svg'/>
+
+     
     </Container>
   )
 }

@@ -11,6 +11,7 @@ const ItemContainer = styled.div`
   background-size: cover;
   background-position: center;
   box-shadow: 0 -20px 30px 5px #242424 inset;
+  margin-bottom: 20px;
 `
 
 const InnerItems = styled.div`
@@ -48,13 +49,13 @@ line-height: 25px;
 `
 
 export const PopularItem = (props) => {
-  let { img } = props
+  let { bg, title } = props
 
   return (
-    <ItemContainer style={{ backgroundImage: `url('${img}')`}}>
+    <ItemContainer style={{ backgroundImage: `url('https://image.tmdb.org/t/p/w500/${bg}')`}}>
       <InnerItems>
         <Play> <img src='./assets/itemPlay.svg'/> </Play>
-        <Title>HOUSE OF CARDS</Title>
+        <Title>{title}</Title>
       </InnerItems>
     </ItemContainer>
   )

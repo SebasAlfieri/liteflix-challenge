@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { PopularItem } from "./PopularItem";
 import { Dropdown } from "./Dropdown";
@@ -11,120 +11,63 @@ const PopularContainer = styled.div`
   margin-bottom: 50px;
 `;
 
-const Ver = styled.div`
-  color: white;
-  display: flex;
-`;
-
 const ItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 25px;
+  z-index: 0;
 `;
 
-const SelectContainer = styled.div`
-  display: flex;
-  width: 170px;
-  font-weight: 300;
-  letter-spacing: 4px;
-  font-size: 18px;
-  color: white;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const Select = styled.select`
-  background-color: #242424;
-  border: none;
-  color: white;
-  font-family: Bebas Neue;
-  letter-spacing: 4px;
-  font-size: 18px;
-  outline: none;
-  border: 0!important;
-  box-shadow: none;
-  overflow: hidden;
-
-  &::-ms-expand{
-    display: none;
-    position: absolute;
-  }
-
-  option{
-    border: none;
-    font-weight: 300;
-    background: transparent !important;
-    letter-spacing: 4px;
-  }
-
-  option:focus {outline:none !important ;background: transparent !important;}
-
-  option:hover {outline:0 !important; background: transparent !important;}
-
-  option:checked{
-    font-weight: 400;
-    
-  }
-
-  option:active{
-  }
 
 
-  
-  option:not(:checked){
-    font-weight: 300;
-    
-  }
-`
-
-
-
-export const Popular = () => {
+export const Popular = (props) => {
 
   const [isPopularOn, setIsPopularOn] = useState(true)
   const [selected, setSelected] = useState("POPULARES")
+  const [data, setData] = useState("")
+  const [loading, setLoading] = useState(true)
 
   function inputChangeHandler(e){
     setIsPopularOn(!isPopularOn)
   }
 
+  useEffect (() => {
+    fetch('https://api.themoviedb.org/3/movie/popular?api_key=6f26fd536dd6192ec8a57e94141f8b20')
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      }
+      throw response;
+    })
+    .then(data => {
+      setData(data)
+    })
+    .finally (() =>{
+      setLoading(false);
+    })
+  },[])
+
   return (
     <PopularContainer>
-      {/* <SelectContainer>
-      <label htmlFor="format">VER:</label>
-      <Select
-      className="select"
-        name="format" id="format"
-        onChange={inputChangeHandler}
-      >
-        <option value={false} >
-          popular
-        </option>
-        <option  value={true}>
-          mis peliculas
-        </option>
-      </Select>
-      </SelectContainer> */}
-
-      <Dropdown selected={selected} setSelected={setSelected}/>
-      <Ver>
-        <p>
-          VER: <b>POPULARES </b>
-        </p>
-      </Ver>
-
-      {isPopularOn ? 
+      <Dropdown selected={selected} setSelected={setSelected} setIsPopularOn={setIsPopularOn} isPopularOn={isPopularOn}/>
+      {selected === "POPULARES" ? 
       <ItemsContainer>
-        <PopularItem img="./assets/ejemplopeli.svg" />
-        <PopularItem img="./assets/ejemplopeli2.svg" />
-        <PopularItem img="./assets/ejemplopeli3.svg" />
-        <PopularItem img="./assets/ejemplopeli4.svg" />
+        {loading ? "" :
+          <div>
+            {data.results.slice(0, 4).map((item, index)  => {
+              return(
+                <PopularItem
+                key={item.id}
+                title={item.original_title}
+                bg={item.backdrop_path}/>
+              );
+            })}
+          </div>
+        }
       </ItemsContainer> 
-      :
-      'not'}
-      
+      : 'not'}
     </PopularContainer>
   );
 };
