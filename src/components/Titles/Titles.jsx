@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const TitlesContainer = styled.div`
@@ -32,11 +32,33 @@ margin: 0;
 `
 
 
-export const Titles = () => {
+export const Titles = (props) => {
+
+  let { random } = props
+  const [data, setData] = useState("")
+  const [loading, setLoading] = useState(true)
+
+  useEffect (() => {
+    fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20')
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      }
+      throw response;
+    })
+    .then(data => {
+      setData(data)
+      console.log(data)
+    })
+    .finally (() =>{
+      setLoading(false);
+    })
+  },[])
+
   return (
     <TitlesContainer>
       <Subtitle>ORIGINAL DE <span>LITEFLIX</span></Subtitle>
-      <Title>LA CASA DE PAPEL</Title>
+      {loading ? "" : <Title>{data.results[random].original_title}</Title>}
     </TitlesContainer>
   )
 }

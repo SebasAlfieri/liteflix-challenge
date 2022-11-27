@@ -11,12 +11,16 @@ const HomeContainer = styled.div`
   font-family: Bebas Neue;
 `
 
+var x = Math.floor(Math.random() * 7)
+
+console.log(x)
+
 function App() {
   return (
     <HomeContainer>
-      <Background/>
+      <Background random={x}/>
       <Navbar/>
-      <Titles/>
+      <Titles random={x}/>
       <MainButtons/>
       <Popular/>
     </HomeContainer>

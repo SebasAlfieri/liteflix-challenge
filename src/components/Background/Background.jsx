@@ -12,10 +12,12 @@ const BackgroundPic = styled.div`
   box-shadow: 0 -100px 100px 10px #242424 inset;
 `
 
-export const Background = () => {
+export const Background = (props) => {
 
   const [data, setData] = useState("")
   const [loading, setLoading] = useState(true)
+
+  let { random } = props
 
   useEffect (() => {
     fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20')
@@ -36,7 +38,7 @@ export const Background = () => {
 
   return (
     <div>
-    {loading ? "" : <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.results[0].poster_path})`}}/>}
+    {loading ? "" : <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.results[random].poster_path})`}}/>}
     </div>
   )
 }
