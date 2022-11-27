@@ -8,7 +8,8 @@ const ButtonsContainer = styled.div`
   align-items: center;
   width: 100%;
   flex-direction: column;
-  gap: 40px;
+  gap: 15px;
+  margin-bottom: 20px;
 
   button{
     font-family: Bebas neue;
@@ -22,7 +23,7 @@ const ButtonsContainer = styled.div`
     font-size: 18px;
     letter-spacing: 4px;
     border: none;
-    border: 1px solid #ffffff0;
+    border: 1px solid #ffffff00;
 
     &:hover{
       border: 1px solid #ffffff7f;

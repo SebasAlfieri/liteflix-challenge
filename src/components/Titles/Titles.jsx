@@ -2,12 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TitlesContainer = styled.div`
-margin-top: 180px;
+height: 420px;
 width: 100%;
 text-align: center;
-height: fit-content;
 display: flex;
 flex-direction: column;
+justify-content: flex-end;
+margin-bottom: 10px;
 `
 
 const Subtitle = styled.p`
