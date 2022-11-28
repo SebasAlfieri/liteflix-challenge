@@ -38,7 +38,7 @@ export const Background = (props) => {
 
   return (
     <div>
-    {loading ? "" : <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.results[random].poster_path})`}}/>}
+    {loading ? "" : <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.results[random].backdrop_path})`}}/>}
     </div>
   )
 }
