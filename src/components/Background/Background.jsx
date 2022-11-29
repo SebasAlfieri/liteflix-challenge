@@ -29,7 +29,6 @@ export const Background = (props) => {
     })
     .then(data => {
       setData(data)
-      console.log(data)
     })
     .finally (() =>{
       setLoading(false);

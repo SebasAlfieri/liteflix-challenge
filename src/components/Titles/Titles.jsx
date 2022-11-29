@@ -47,7 +47,6 @@ export const Titles = (props) => {
     })
     .then(data => {
       setData(data)
-      console.log(data)
     })
     .finally (() =>{
       setLoading(false);

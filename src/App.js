@@ -13,8 +13,6 @@ const HomeContainer = styled.div`
 
 var x = Math.floor(Math.random() * 7)
 
-console.log(x)
-
 function App() {
   return (
     <HomeContainer>

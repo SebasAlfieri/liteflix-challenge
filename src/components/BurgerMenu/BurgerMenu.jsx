@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { MainContainer } from '../Dropzone/MainContainer'
 
 const MenuContainer = styled.div`
   position: absolute;
@@ -34,6 +35,7 @@ font-weight: 300;
 `
 
 const Li = styled.li`
+cursor: pointer;
   &:hover{
     font-weight: 400;
   }
@@ -41,9 +43,13 @@ const Li = styled.li`
 
 export const BurgerMenu = () => {
 
+  const [isClicked, setIsClicked] = useState(false)
+
   return (
     <MenuContainer>
       <NavContainer>
+        {isClicked ? <MainContainer/>
+        : 
         <List>
           <Li>INICIO</Li>
           <Li>SERIES</Li>
@@ -52,9 +58,9 @@ export const BurgerMenu = () => {
           <Li>POPULARES</Li>
           <Li>MIS PELÍCULAS</Li>
           <Li>MI LISTA</Li>
-          <Li style={{marginTop: "20px", fontWeight: "500"}}><img src="./assets/mainPlus.svg" alt="plusSymbol" /> AGREGAR PELÍCULA</Li>
+          <Li style={{marginTop: "20px", fontWeight: "500"}} onClick={(e) => setIsClicked(true)}><img src="./assets/mainPlus.svg" alt="plusSymbol" /> AGREGAR PELÍCULA</Li>
           <Li style={{marginTop: "20px"}}>CERRAR SESIÓN</Li>
-        </List>
+        </List>}
       </NavContainer>
     </MenuContainer>
   )
