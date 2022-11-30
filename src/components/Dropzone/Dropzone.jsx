@@ -10,7 +10,7 @@ align-items: center;
   height: 40px;
   border: 2px dashed white;
   padding: 20px;
-  margin-top: -40px
+  margin-top: -40px;
 `
 
 const Input = styled.input`
@@ -54,14 +54,21 @@ function Dropzone() {
     })
   }, [])
   
-  const {getRootProps, getInputProps} = useDropzone({onDrop})
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
     <Container {...getRootProps()}>
       <Input {...getInputProps()} />
       <TextIconContainer>
-        <img src="./assets/dropzoneClip.svg" alt="" />
-      <p>Agregá un archivo</p>
+      {
+        isDragActive ?
+          <p>Suelta el archivo aquí</p> :
+          <>
+            <img src="./assets/dropzoneClip.svg" alt="" />
+            <p>Agregá un archivo</p>
+          </>
+      }
+
       </TextIconContainer>
     </Container>
   )
