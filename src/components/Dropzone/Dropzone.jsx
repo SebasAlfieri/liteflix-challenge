@@ -35,32 +35,16 @@ function Dropzone() {
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
-
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
         const base64Str = reader.result
         const data = JSON.stringify(base64Str)
         userMovie.img = data
-
-        
-        console.log(userMovie)
-        
-        if (localStorage.getItem("movie",data) === null){
-          localStorage.setItem("movie", data)
-        } else if(localStorage.getItem("movie2",data) === null){
-          localStorage.setItem("movie2", data)
-        } else if(localStorage.getItem("movie3",data) === null){
-          localStorage.setItem("movie3", data)
-        } else if(localStorage.getItem("movie4",data) === null){
-          localStorage.setItem("movie4", data)
-        } else {
-          alert("limite de 4 peliculas")
-        }
       }
       reader.readAsDataURL(file)
     })
-  }, [])
+  }, [userMovie])
   
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, maxFiles: 1,})
 
@@ -76,7 +60,6 @@ function Dropzone() {
             <p>Agregá un archivo</p>
           </>
       }
-
       </TextIconContainer>
     </Container>
   )

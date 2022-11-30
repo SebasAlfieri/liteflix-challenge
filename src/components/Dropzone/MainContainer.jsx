@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import Dropzone from '../Dropzone/Dropzone'
+import { LoadBar } from './LoadBar'
 import { TextInput } from './TextInput'
+import { SuccesScreen } from './SuccesScreen'
+import { userContext } from '../../context/userContect'
 
 const Container = styled.div`
   position: absolute;
@@ -23,11 +26,15 @@ const Title = styled.h2`
 
 export const MainContainer = () => {
 
+  const context = useContext(userContext);
+  const { uploading, succes } = context;
+
   return (
     <Container>
       <Title>AGREGAR PELÍCULA</Title>
-      <Dropzone/>
+      {uploading ? <LoadBar/> : <Dropzone/>}
       <TextInput/>
+      {succes && <SuccesScreen/>}
     </Container>
   )
 }

@@ -39,7 +39,7 @@ const Input = styled.input`
   border: 1px solid #919191;
 
   &:hover{
-    background-color: #919191;
+    background-color: white;
     color: #242424;
   }
 `
@@ -51,11 +51,10 @@ const Toggle = styled.div`
   background-color: #fff;
 `
 
-
 export const TextInput = () => {
 
   const context = useContext(userContext);
-  const { ExitNav, toggle, userMovie, moviesArray, localString, localArray } = context;
+  const { ExitNav, toggle, userMovie, moviesArray, localArray, setUploading, setUploadedName } = context;
   const [movieTitle, setMovieTitle] = useState("");
 
   function inputChangeHandler(evento) {
@@ -67,32 +66,15 @@ export const TextInput = () => {
     event.preventDefault();
     userMovie.title = movieTitle
 
-
-
     if (userMovie.img !== ""){
       moviesArray.push(userMovie)
       localArray.push(userMovie)
-
+      setUploadedName(userMovie.title)
       localStorage.setItem("userMovies", JSON.stringify(localArray))
+      setUploading(true)
 
-      
     } else {
       alert("Por favor suba una imagen")
-    }
-
-
-
-
-
-    if (localStorage.getItem("title",movieTitle) === null){
-      localStorage.setItem("title", movieTitle)
-    } else if(localStorage.getItem("title2",movieTitle) === null){
-      localStorage.setItem("title2", movieTitle)
-    } else if(localStorage.getItem("title3",movieTitle) === null){
-      localStorage.setItem("title3", movieTitle)
-    } else if(localStorage.getItem("title4",movieTitle) === null){
-      localStorage.setItem("title4", movieTitle)
-    } else {
     }
   }
 
@@ -100,7 +82,7 @@ export const TextInput = () => {
     <FormContainer onSubmit={handleSubmit}>
       <InputText 
         minLength={3}
-        maxLength={23}
+        maxLength={30}
         type="text"
         onChange={inputChangeHandler}
         placeholder='TÍTULO'

@@ -10,8 +10,9 @@ const ButtonsContainer = styled.div`
   flex-direction: column;
   gap: 15px;
   margin-bottom: 20px;
+`
 
-  button{
+const PlayButton = styled.button`
     font-family: Bebas neue;
     display: flex;
     justify-content: center;
@@ -27,18 +28,39 @@ const ButtonsContainer = styled.div`
 
     &:hover{
       border: 1px solid #ffffff7f;
+      background-color: white;
+      color: #242424;
     }
 
     img{
       margin-right: 10px;
     }
-  }
-`
-
-const PlayButton = styled.button`
 `
 
 const ListButton = styled.button`
+    font-family: Bebas neue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #242424;
+    height: 56px;
+    width: 248px;
+    font-size: 18px;
+    letter-spacing: 4px;
+    border: none;
+    border: 1px solid #ffffff00;
+    border: 1px solid #ffffff7f;
+
+    &:hover{
+      background-color: white;
+      color: #242424;
+    }
+
+    img{
+      margin-right: 10px;
+      
+    }
 `
 
 

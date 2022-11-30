@@ -5,20 +5,22 @@ const userContext = createContext();
 
 export default function UserContextProvider(props){
   const [menuClicked, setMenuClicked] = useState(false)
+  const [succes, setSucces] = useState(false)
+  const [isListo, setIsListo] = useState(false)
   const [isLocked, toggle] = useBodyScrollLock()
-
+  const [uploading, setUploading] = useState(false)
   const [userMovie, setUserMovie] = useState({
     img: "",
     title: ""
   })
-
-
   let moviesArray = []
-
   let localString = localStorage.getItem("userMovies")
-
   let localArray = JSON.parse(localString)
-  console.log(localArray)
+
+  if (localArray === null){
+    localArray = []
+  }
+  const [uploadedName, setUploadedName] = useState("")
 
 
   const ExitNav = () => {
@@ -33,6 +35,7 @@ export default function UserContextProvider(props){
     <userContext.Provider
       value={{
         menuClicked,
+        setMenuClicked,
         ExitNav,
         isLocked,
         toggle,
@@ -40,7 +43,15 @@ export default function UserContextProvider(props){
         setUserMovie,
         moviesArray,
         localString,
-        localArray
+        localArray,
+        uploading,
+        setUploading,
+        isListo,
+        setIsListo,
+        succes,
+        setSucces,
+        uploadedName,
+        setUploadedName
       }}
     >
       {props.children}
