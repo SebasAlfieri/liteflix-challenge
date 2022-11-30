@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { userContext } from '../../context/userContect'
 
 const FormContainer = styled.form`
   display: flex;
@@ -32,6 +33,7 @@ const Input = styled.input`
   color: white;
   font-size: 18px;
   padding: 20px;
+  width: 100%;
   letter-spacing: 4px;
   background-color: #242424;
   border: 1px solid #919191;
@@ -42,13 +44,21 @@ const Input = styled.input`
   }
 `
 
+const Toggle = styled.div`
+  width: fit-content;
+  height: fit-content;
+  width: 250px;
+  background-color: #fff;
+`
+
 
 export const TextInput = () => {
 
+  const context = useContext(userContext);
+  const { ExitNav, toggle } = context;
   const [movieTitle, setMovieTitle] = useState("");
 
   function inputChangeHandler(evento) {
-    // let inputTitle = evento.target.title;
     let value = evento.target.value;
     setMovieTitle(value)
   }
@@ -83,7 +93,9 @@ export const TextInput = () => {
           required
           />
         <Input type="submit" placeholder='TÍTULO' value='SUBIR PELÍCULA'/>
-        <Input type="button" value="SALIR"/>
+        <Toggle onClick={toggle}>
+          <Input type="button" value="SALIR" onClick={ExitNav}/>
+        </Toggle>
       </FormContainer>
   )
 }

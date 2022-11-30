@@ -3,9 +3,9 @@ import { useDropzone } from 'react-dropzone'
 import styled from 'styled-components'
 
 const Container = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 300px;
   height: 40px;
   border: 2px dashed white;

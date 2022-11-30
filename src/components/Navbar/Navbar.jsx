@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu'
-import useBodyScrollLock from '../../hooks/useBodyScrollLock'
-
+import { userContext } from '../../context/userContect'
 
 
 const Container = styled.div`
@@ -40,19 +39,18 @@ const User = styled.img`
 `
 
 export const Navbar = () => {
-
-  const [menuClicked, setMenuClicked] = useState(false)
-  const [isLocked, toggle] = useBodyScrollLock()
+  const context = useContext(userContext);
+  const { menuClicked, ExitNav, toggle } = context;
 
   return (
     <Container>
       {menuClicked ?
       <MenuIconContainer onClick={toggle}>
-        <MenuIcon style={{width: "15px"}} src='./assets/cerrar.svg' onClick={(e) => setMenuClicked(!menuClicked)}/>
+        <MenuIcon style={{width: "15px"}} src='./assets/cerrar.svg'  onClick={ExitNav}/>
       </MenuIconContainer> 
       :
       <MenuIconContainer onClick={toggle}>
-        <MenuIcon src='./assets/menu.svg' onClick={(e) => setMenuClicked(!menuClicked)}/>
+        <MenuIcon src='./assets/menu.svg' onClick={ExitNav}/>
       </MenuIconContainer>
       }
       <HeaderTitle src='./assets/title.svg'/>
