@@ -55,7 +55,7 @@ const Toggle = styled.div`
 export const TextInput = () => {
 
   const context = useContext(userContext);
-  const { ExitNav, toggle } = context;
+  const { ExitNav, toggle, userMovie, moviesArray, localString, localArray } = context;
   const [movieTitle, setMovieTitle] = useState("");
 
   function inputChangeHandler(evento) {
@@ -65,7 +65,24 @@ export const TextInput = () => {
 
   function handleSubmit(event){
     event.preventDefault();
-    console.log(movieTitle)
+    userMovie.title = movieTitle
+
+
+
+    if (userMovie.img !== ""){
+      moviesArray.push(userMovie)
+      localArray.push(userMovie)
+
+      localStorage.setItem("userMovies", JSON.stringify(localArray))
+
+      
+    } else {
+      alert("Por favor suba una imagen")
+    }
+
+
+
+
 
     if (localStorage.getItem("title",movieTitle) === null){
       localStorage.setItem("title", movieTitle)
@@ -76,26 +93,25 @@ export const TextInput = () => {
     } else if(localStorage.getItem("title4",movieTitle) === null){
       localStorage.setItem("title4", movieTitle)
     } else {
-      alert("limite de 4 peliculas")
     }
   }
 
   return (
-      <FormContainer onSubmit={handleSubmit}>
-        <InputText 
-          minLength={3}
-          maxLength={23}
-          type="text"
-          onChange={inputChangeHandler}
-          placeholder='TÍTULO'
-          value={movieTitle}
-          name="title"
-          required
-          />
-        <Input type="submit" placeholder='TÍTULO' value='SUBIR PELÍCULA'/>
-        <Toggle onClick={toggle}>
-          <Input type="button" value="SALIR" onClick={ExitNav}/>
-        </Toggle>
-      </FormContainer>
+    <FormContainer onSubmit={handleSubmit}>
+      <InputText 
+        minLength={3}
+        maxLength={23}
+        type="text"
+        onChange={inputChangeHandler}
+        placeholder='TÍTULO'
+        value={movieTitle}
+        name="title"
+        required
+        />
+      <Input type="submit" placeholder='TÍTULO' value='SUBIR PELÍCULA'/>
+      <Toggle onClick={toggle}>
+        <Input type="button" value="SALIR" onClick={ExitNav}/>
+      </Toggle>
+    </FormContainer>
   )
 }

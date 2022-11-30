@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { PopularItem } from "./PopularItem";
 import { Dropdown } from "./Dropdown";
 import { UserMovie } from "../MyMovies/UserMovie";
+import { userContext } from '../../context/userContect'
 
 const PopularContainer = styled.div`
   display: flex;
@@ -65,6 +66,8 @@ function handleDeleteAll(){
 
 export const Popular = (props) => {
 
+  const context = useContext(userContext);
+  const { localArray } = context;
   const [isPopularOn, setIsPopularOn] = useState(true)
   const [selected, setSelected] = useState("POPULARES")
   const [data, setData] = useState("")
@@ -110,7 +113,7 @@ export const Popular = (props) => {
       </ItemsContainer> 
       :
       <UserMovieContainer>
-        {moviesArr.map((item, i) => {
+        {localArray.map((item, i) => {
           return(
             <UserMovie
             key={i}

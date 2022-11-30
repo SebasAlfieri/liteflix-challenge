@@ -7,6 +7,19 @@ export default function UserContextProvider(props){
   const [menuClicked, setMenuClicked] = useState(false)
   const [isLocked, toggle] = useBodyScrollLock()
 
+  const [userMovie, setUserMovie] = useState({
+    img: "",
+    title: ""
+  })
+
+
+  let moviesArray = []
+
+  let localString = localStorage.getItem("userMovies")
+
+  let localArray = JSON.parse(localString)
+  console.log(localArray)
+
 
   const ExitNav = () => {
     setMenuClicked(!menuClicked)
@@ -22,7 +35,12 @@ export default function UserContextProvider(props){
         menuClicked,
         ExitNav,
         isLocked,
-        toggle
+        toggle,
+        userMovie,
+        setUserMovie,
+        moviesArray,
+        localString,
+        localArray
       }}
     >
       {props.children}

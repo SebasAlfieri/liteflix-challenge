@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { userContext } from '../../context/userContect'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -28,6 +29,9 @@ gap: 20px;
 `
 
 function Dropzone() {
+  const context = useContext(userContext);
+  const { userMovie } = context;
+  
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
@@ -37,6 +41,10 @@ function Dropzone() {
       reader.onload = () => {
         const base64Str = reader.result
         const data = JSON.stringify(base64Str)
+        userMovie.img = data
+
+        
+        console.log(userMovie)
         
         if (localStorage.getItem("movie",data) === null){
           localStorage.setItem("movie", data)
@@ -54,7 +62,7 @@ function Dropzone() {
     })
   }, [])
   
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, maxFiles: 1,})
 
   return (
     <Container {...getRootProps()}>
@@ -64,7 +72,7 @@ function Dropzone() {
         isDragActive ?
           <p>Suelta el archivo aquí</p> :
           <>
-            <img src="./assets/dropzoneClip.svg" alt="" />
+            <img src="./assets/dropzoneClip.svg" alt="clip" />
             <p>Agregá un archivo</p>
           </>
       }
