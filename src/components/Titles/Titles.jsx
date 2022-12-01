@@ -9,6 +9,10 @@ const TitlesContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   margin-bottom: 10px;
+
+  @media (min-width: 576px){
+    height: fit-content;
+  }
 `
 
 const Subtitle = styled.p`
@@ -29,6 +33,16 @@ const Title = styled.h2`
   line-height: 76px;
   letter-spacing: 12px;
   margin: 0;
+
+  @media (min-width: 576px) {
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 76px;
+  line-height: 76px;
+  }
 `
 
 export const Titles = (props) => {

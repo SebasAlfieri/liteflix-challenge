@@ -9,14 +9,30 @@ const BackgroundPic = styled.div`
   background-position: center;
   height: 585px;
   width: 100%;
-  box-shadow: 0 -100px 100px 10px #242424 inset;
+  box-shadow: 0 -100px 100px 50px #242424 inset;
+
+  @media (min-width: 576px){
+    height: 100vh;
+  }
 `
 
+const BackgroundTopShadow = styled.div`
+  position: absolute;
+  box-shadow: 0 50px 100px 0px #242424 inset;
+  width: fit-content;
+  height: fit-content;
+  height: 585px;
+  width: 100%;
+  z-index: -9;
+
+  @media (min-width: 576px){
+    height: 100vh;
+  }
+`
 export const Background = (props) => {
 
   const [data, setData] = useState("")
   const [loading, setLoading] = useState(true)
-
   let { random } = props
 
   useEffect (() => {
@@ -37,7 +53,13 @@ export const Background = (props) => {
 
   return (
     <div>
-    {loading ? "" : <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.results[random].backdrop_path})`}}/>}
+    {loading ? "" : 
+      <>
+        <BackgroundTopShadow/>
+        <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.results[random].backdrop_path})`}}/>
+      </>
+      }
+      
     </div>
   )
 }

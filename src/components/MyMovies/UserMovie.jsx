@@ -5,8 +5,8 @@ const ItemContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  width: 350px;
-  height: 200px;
+  width: 327px;
+  height: 172px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

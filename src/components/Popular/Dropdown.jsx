@@ -23,6 +23,7 @@ const DropdownBtn = styled.div`
   gap: 5px;
   color: white;
   width: 250px;
+  cursor: pointer;
 `
 
 const DropdownContent = styled.div`

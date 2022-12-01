@@ -59,7 +59,6 @@ const ListButton = styled.button`
 
     img{
       margin-right: 10px;
-      
     }
 `
 

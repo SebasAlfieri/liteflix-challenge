@@ -11,6 +11,16 @@ const PopularContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+
+  @media (min-width: 576px) {
+    justify-content: space-between;
+    min-height: 100px;
+    height: 95%;
+    margin-bottom: 0;
+    padding: 0;
+    gap: 0px;
+    margin-bottom: 0;
+  }
 `;
 
 const ItemsContainer = styled.div`
@@ -18,9 +28,18 @@ const ItemsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
   z-index: 0;
-`;
+  gap: 25px;
+
+  @media (min-width: 576px) {
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    gap: 25px;
+    padding-bottom: 15px;
+  }
+`
 
 const UserMovieContainer = styled.div`
 display: flex;
@@ -38,27 +57,6 @@ const DeleteAll = styled.input`
   background-color: #353535;
   border: none;
 `
-
-const showmovie = localStorage.getItem("movie")
-const showmovie2 = localStorage.getItem("movie2")
-const showmovie3 = localStorage.getItem("movie3")
-const showmovie4 = localStorage.getItem("movie4")
-const showtitle = localStorage.getItem("title")
-const showtitle2 = localStorage.getItem("title2")
-const showtitle3 = localStorage.getItem("title3")
-const showtitle4 = localStorage.getItem("title4")
-
-let moviesArr = [{title: showtitle, img: showmovie}, {title: showtitle2, img: showmovie2}, {title: showtitle3, img: showmovie3}, {title: showtitle4, img: showmovie4}]
-
-if (localStorage.getItem("movie4") === null){
-  moviesArr = [{title: showtitle, img: showmovie}, {title: showtitle2, img: showmovie2}, {title: showtitle3, img: showmovie3}]
-} if (localStorage.getItem("movie3") === null){
-  moviesArr = [{title: showtitle, img: showmovie}, {title: showtitle2, img: showmovie2}]
-} if (localStorage.getItem("movie2") === null){
-  moviesArr = [{title: showtitle, img: showmovie}]
-} if (localStorage.getItem("movie") === null){
-  moviesArr = []
-}  
 
 function handleDeleteAll(){
   localStorage.clear()
@@ -99,16 +97,18 @@ export const Popular = (props) => {
       {selected === "POPULARES" ? 
       <ItemsContainer>
         {loading ? "" :
-          <div>
+          <>
             {data.results.slice(0, 4).map((item)  => {
               return(
                 <PopularItem
                 key={item.id}
                 title={item.original_title}
-                bg={item.backdrop_path}/>
+                bg={item.backdrop_path}
+                vote={item.vote_average}
+                date={item.release_date}/>
               );
             })}
-          </div>
+          </>
         }
       </ItemsContainer> 
       :

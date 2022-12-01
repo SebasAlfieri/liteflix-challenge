@@ -12,6 +12,27 @@ const HomeContainer = styled.div`
   font-family: Bebas Neue;
 `
 
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 576px){
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    height: 85vh;
+  }
+
+  @media (min-width: 992px){
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+`
+
+const TitleContainer = styled.div`
+
+`
+
 var x = Math.floor(Math.random() * 7)
 
 function App() {
@@ -20,9 +41,13 @@ function App() {
       <HomeContainer>
         <Background random={x}/>
         <Navbar/>
-        <Titles random={x}/>
-        <MainButtons/>
-        <Popular/>
+        <FlexContainer>
+          <TitleContainer>
+            <Titles random={x}/>
+            <MainButtons/>
+          </TitleContainer>
+          <Popular/>
+        </FlexContainer>
       </HomeContainer>
     </UserContextProvider>
   );
