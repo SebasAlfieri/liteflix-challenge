@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const TitlesContainer = styled.div`
   height: 420px;
@@ -49,6 +50,14 @@ const Title = styled.h2`
   }
 
   @media (min-width: 992px) {
+    font-size: 76px;
+    line-height: 76px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    max-width: 1000px;
+  }
+
+  @media (min-width: 1400px) {
     font-size: 120px;
     line-height: 100px;
     margin-top: 0px;
@@ -80,8 +89,16 @@ export const Titles = (props) => {
 
   return (
     <TitlesContainer>
-      <Subtitle>ORIGINAL DE <span>LITEFLIX</span></Subtitle>
-      {loading ? "" : <Title>{data.results[random].original_title}</Title>}
+      <Subtitle
+      as={motion.p}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 2.2,  type: 'tween' }} >ORIGINAL DE <span>LITEFLIX</span></Subtitle>
+      {loading ? "" : <Title
+      as={motion.div}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 2,  type: 'tween' }} >{data.results[random].original_title}</Title>}
     </TitlesContainer>
   )
 }

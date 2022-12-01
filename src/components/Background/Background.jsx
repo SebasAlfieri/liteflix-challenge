@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const BackgroundPic = styled.div`
   position: absolute;
@@ -56,7 +57,12 @@ export const Background = (props) => {
     {loading ? "" : 
       <>
         <BackgroundTopShadow/>
-        <BackgroundPic style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.results[random].backdrop_path})`}}/>
+        <BackgroundPic
+        as={motion.div}
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.1, duration: 7 }} 
+        style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.results[random].backdrop_path})`}}/>
       </>
       }
       

@@ -68,7 +68,7 @@ export const SuccesScreen = () => {
         <Text>{uploadedName} FUE CORRECTAMENTE SUBIDA.</Text>
       </TextContainer>
       <div onClick={toggle}>
-        <Input type="button" value="holaa" onClick={ExitSucces}/>
+        <Input type="button" value="IR A HOME" onClick={ExitSucces}/>
       </div>
     </Container>
   )

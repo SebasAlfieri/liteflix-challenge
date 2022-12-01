@@ -33,19 +33,12 @@ const ItemsContainer = styled.div`
 
   @media (min-width: 576px) {
     justify-content: flex-start;
-    height: 100%;
+    height: 90%;
     width: 241px;
     overflow-y: auto;
     gap: 25px;
     padding-bottom: 15px;
   }
-`
-
-const UserMovieContainer = styled.div`
-display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `
 
 const DeleteAll = styled.input`

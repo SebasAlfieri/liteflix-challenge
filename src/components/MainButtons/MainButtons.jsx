@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 
@@ -75,8 +76,18 @@ const ListButton = styled.button`
 export const MainButtons = () => {
   return (
     <ButtonsContainer>
-      <PlayButton><img src='./assets/mainPlay.svg' alt='add icon'/>REPRODUCIR</PlayButton>
-      <ListButton><img src='./assets/mainPlus.svg' alt='add icon'/>MI LISTA</ListButton>
+      <PlayButton
+      as={motion.button}
+      initial={{ opacity: 0, x: -200 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 3, type: 'tween' }}>
+        <img src='./assets/mainPlay.svg' alt='add icon'/>REPRODUCIR</PlayButton>
+      <ListButton
+      as={motion.button}
+      initial={{ opacity: 0, x: -200 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 2.7, type: 'tween' }}>
+        <img src='./assets/mainPlus.svg' alt='add icon'/>MI LISTA</ListButton>
     </ButtonsContainer>
   )
 }

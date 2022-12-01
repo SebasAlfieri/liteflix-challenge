@@ -15,6 +15,19 @@ const MenuContainer = styled.div`
   z-index: 60;
   margin-top:-60px;
   padding-top: 30px;
+
+  @media (min-width: 768px){
+    width: 760px;
+    left:unset;
+    right: 0;
+    top:0;
+    bottom:0;
+    height: 100vh;
+    margin-top: 0;
+    padding-top: 0;
+    z-index: 90;
+    overflow-y: auto;
+    }
 `
 
 const NavContainer = styled.nav`
@@ -23,6 +36,15 @@ const NavContainer = styled.nav`
   color: white;
   letter-spacing: 4px;
   font-size: 16px;
+
+  @media (min-width: 768px){
+    height: calc( 100vh - 80px);
+  }
+
+  @media (min-width: 1400px){
+    font-size: 22px;
+    height: calc( 100vh - 120px);
+  }
 `
 
 const List = styled.ul`
@@ -32,6 +54,15 @@ flex-direction: column;
 gap: 40px;
 list-style: none;
 font-weight: 300;
+
+@media (min-width: 768px){
+  gap: 27px;
+  }
+
+  @media (min-width: 1400px){
+  gap: 38px;
+  }
+
 `
 
 const Li = styled.li`
