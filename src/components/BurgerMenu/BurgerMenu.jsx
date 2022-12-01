@@ -3,6 +3,7 @@ import { userContext } from '../../context/userContect'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { MainContainer } from '../Dropzone/MainContainer'
+import useIsMobile from '../../hooks/useIsMobile.ts'
 
 const MenuContainer = styled.div`
   position: absolute;
@@ -16,7 +17,7 @@ const MenuContainer = styled.div`
   width: 100vw;
   z-index: 60;
   margin-top:-60px;
-  padding-top: 30px;
+  padding-top: 20px;
 
   @media (min-width: 768px){
     width: 760px;
@@ -92,6 +93,7 @@ export const BurgerMenu = () => {
   const context = useContext(userContext);
   const { menuClicked, ExitNav } = context;
   const [isClicked, setIsClicked] = useState(false)
+  const isMobile = useIsMobile();
 
 
   return (
@@ -105,8 +107,12 @@ export const BurgerMenu = () => {
         {isClicked ? <MainContainer/>
         : 
         <List>
-          {menuClicked ? <MenuIconDesktop
-          style={{width: "15px"}} src='./assets/cerrar.svg' alt="cerrar menu" onClick={ExitNav}/> : null}
+          {isMobile ? null :
+            <>
+              {menuClicked ? <MenuIconDesktop style={{width: "15px"}} src='./assets/cerrar.svg' alt="cerrar menu" onClick={ExitNav}/> : null}
+            </>
+          }
+          
           <Li>INICIO</Li>
           <Li>SERIES</Li>
           <Li>PELÍCULAS</Li>

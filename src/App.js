@@ -35,7 +35,14 @@ const FlexContainer = styled.div`
 `
 
 const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
 
+  @media (min-width: 768px){
+    margin-bottom: 30px;
+  }
 `
 
 var x = Math.floor(Math.random() * 7)
