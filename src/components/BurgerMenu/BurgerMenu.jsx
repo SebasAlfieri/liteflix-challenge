@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 import { MainContainer } from '../Dropzone/MainContainer'
 
 const MenuContainer = styled.div`
@@ -77,8 +78,13 @@ export const BurgerMenu = () => {
   const [isClicked, setIsClicked] = useState(false)
 
   return (
-    <MenuContainer>
-      <NavContainer>
+    <MenuContainer
+      as={motion.div}
+      initial={{ y: -2000 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.3,  ease: 'easeOut' }}
+      exit={{ x: -300, opacity: 0, transition:{duration: 1} }}>
+      <NavContainer >
         {isClicked ? <MainContainer/>
         : 
         <List>

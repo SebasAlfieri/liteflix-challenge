@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { userContext } from '../../context/userContect'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 const ItemContainer = styled.div`
@@ -126,9 +127,18 @@ const TitleHover = styled.div`
 export const UserMovie = (props) => {
   let { bg, title } = props
   const [isHover, setIsHover] = useState(false)
+  const itemList = {
+    visible: { x: 0, transition: { duration: 0.7, type: 'tween' } },
+    hidden: { x: 500 }
+  };
+
 
   return (
-    <ItemContainer style={{backgroundImage: `url(${bg})`}}  onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+    <ItemContainer
+      as={motion.div}
+      variants={itemList}
+      whileTap={{ scale: 0.95 }}
+    style={{backgroundImage: `url(${bg})`}}  onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <InnerItems>
       {isHover ? "" :
         <div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { PopularItem } from "./PopularItem";
 import { Dropdown } from "./Dropdown";
 import { UserMovie } from "../MyMovies/UserMovie";
@@ -30,6 +31,26 @@ const ItemsContainer = styled.div`
   align-items: center;
   z-index: 0;
   gap: 25px;
+  overflow-x: hidden;
+
+  @media (min-width: 576px) {
+    justify-content: flex-start;
+    height: 90%;
+    width: 241px;
+    overflow-y: auto;
+    gap: 25px;
+    padding-bottom: 15px;
+  }
+`
+
+const ItemsUserContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  gap: 25px;
+  overflow-x: hidden;
 
   @media (min-width: 576px) {
     justify-content: flex-start;
@@ -55,7 +76,22 @@ function handleDeleteAll(){
   localStorage.clear()
 }
 
-export const Popular = (props) => {
+export const list = {
+  visible: { transition: { delay: 0.1, when: 'beforeChildren', staggerChildren: 0.2, type: 'tween' } },
+  hidden: { transition: { when: 'afterChildren' } }
+};
+
+export const list2 = {
+  visible: { transition: { delay: 0.1, when: 'beforeChildren', staggerChildren: 0.2, type: 'tween' } },
+  hidden: { transition: { when: 'afterChildren' } }
+};
+
+export const itemList = {
+  visible: { opacity: 1, x: 0, transition: { duration: 2, type: 'spring' } },
+  hidden: { opacity: 0, x: 1000 }
+};
+
+export const Popular = () => {
 
   const context = useContext(userContext);
   const { localArray } = context;
@@ -86,15 +122,27 @@ export const Popular = (props) => {
   },[])
 
   return (
-    <PopularContainer>
+    <PopularContainer
+    as={motion.div}
+    initial= {{ x: 500, opacity: 0 }}
+    animate={{ x: 0, opacity: 1}}
+    transition={{ delay: 2.5, duration: 0.7, type: 'tween' }}
+
+    >
       <Dropdown selected={selected} setSelected={setSelected} setIsPopularOn={setIsPopularOn} isPopularOn={isPopularOn}/>
       {selected === "POPULARES" ? 
-      <ItemsContainer>
+      <ItemsContainer
+        as={motion.div}
+        initial="hidden"
+          animate="visible"
+          variants={list}>
         {loading ? "" :
           <>
             {data.results.slice(0, 4).map((item)  => {
               return(
                 <PopularItem
+                as={motion.div}
+                variants={itemList}
                 key={item.id}
                 title={item.original_title}
                 bg={item.backdrop_path}
@@ -106,7 +154,11 @@ export const Popular = (props) => {
         }
       </ItemsContainer> 
       :
-      <ItemsContainer>
+      <ItemsUserContainer
+        as={motion.div}
+        initial="hidden"
+        animate="visible"
+        variants={list2}>
         {localArray.map((item, i) => {
           return(
             <UserMovie
@@ -116,7 +168,7 @@ export const Popular = (props) => {
           );
         })}
         {isEmpty ? "" : <DeleteAll type="button" value="Delete All" onClick={handleDeleteAll}/>}
-      </ItemsContainer>
+      </ItemsUserContainer>
       
     }
     </PopularContainer>

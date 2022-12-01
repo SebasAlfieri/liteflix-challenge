@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
 const ItemContainer = styled.div`
@@ -80,6 +81,7 @@ const HoverBg = styled.div`
   }
 `
 
+
 const PlayHover = styled.div`
     position: relative;
     top: 80px;
@@ -158,8 +160,17 @@ export const PopularItem = (props) => {
   const [isHover, setIsHover] = useState(false)
   const dateCut = date.substring(0, 4)
 
+  const itemList = {
+    visible: { x: 0, transition: { duration: 0.7, type: 'tween' } },
+    hidden: { x: 500 }
+  };
+
   return (
-    <ItemContainer style={{ backgroundImage: `url('https://image.tmdb.org/t/p/w500/${bg}')`}} onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+    <ItemContainer
+      as={motion.div}
+      variants={itemList}
+      whileTap={{ scale: 0.95 }}
+      style={{ backgroundImage: `url('https://image.tmdb.org/t/p/w500/${bg}')`}} onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <InnerItems>
         {isHover ? "" :
         <div>
