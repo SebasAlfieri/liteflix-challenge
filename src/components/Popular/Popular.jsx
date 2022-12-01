@@ -82,11 +82,6 @@ export const list = {
   hidden: { transition: { when: 'afterChildren' } }
 };
 
-export const list2 = {
-  visible: { transition: { delay: 0.1, when: 'beforeChildren', staggerChildren: 0.2, type: 'tween' } },
-  hidden: { transition: { when: 'afterChildren' } }
-};
-
 export const itemList = {
   visible: { opacity: 1, x: 0, transition: { duration: 2, type: 'spring' } },
   hidden: { opacity: 0, x: 1000 }
@@ -122,19 +117,12 @@ export const Popular = () => {
     })
   },[])
   console.log(window.innerWidth)
-  const isMobile = useIsMobile();
 
   let animVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.7, type: 'tween' }}
+    hidden: { y: 1500, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { delay: 3, duration: 1, type: 'tween' }}
   };
 
-  if (!isMobile) {
-    animVariants = {
-      hidden: { y: 500 },
-      visible: { y: 0, transition: { duration: 0.7, type: 'tween' }}
-    };
-  }
 
   return (
     <PopularContainer
@@ -142,15 +130,14 @@ export const Popular = () => {
     variants={animVariants}
     initial="hidden"
     animate="visible"
-    transition={{ delay: 2.5, duration: 0.7, type: 'tween' }}
     >
       <Dropdown selected={selected} setSelected={setSelected} setIsPopularOn={setIsPopularOn} isPopularOn={isPopularOn}/>
       {selected === "POPULARES" ? 
       <ItemsContainer
         as={motion.div}
         initial="hidden"
-          animate="visible"
-          variants={list}>
+        animate="visible"
+        variants={list}>
         {loading ? "" :
           <>
             {data.results.slice(0, 4).map((item)  => {
@@ -173,7 +160,7 @@ export const Popular = () => {
         as={motion.div}
         initial="hidden"
         animate="visible"
-        variants={list2}>
+        variants={list}>
         {localArray.map((item, i) => {
           return(
             <UserMovie

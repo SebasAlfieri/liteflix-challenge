@@ -16,24 +16,16 @@ const Container = styled.div`
   width: 90%;
   z-index: 100;
 
-  .bell{
-    transition: 0.3s;
-
-    &:hover{
-      transform: scale(1.2)
-    }
-  }
-
   @media (min-width: 768px){
     justify-content: flex-end;
     gap: 40px;
     padding-top: 20px;
-    padding-right: 0px;
+    padding-right: 20px;
   }
 
   
   @media (min-width: 992px){
-    padding-right: 80px;
+    padding-right: 20px;
   }
 `
 
@@ -49,14 +41,6 @@ const MenuIcon = styled.img`
   z-index: 100;
   width: 27px;
   z-index: 110;
-`
-
-const MenuIconDesktop = styled.img`
-  position: relative;
-  right: 425px;
-  width: 0px;
-  z-index: 110;
-  transition: 0.3s;
 `
 
 const HeaderTitleContainer= styled.div`
@@ -108,11 +92,9 @@ letter-spacing: 4px;
 const User = styled.img`
   border-radius: 50%;
   z-index: 100;
-  transition: 0.3s;
+`
 
-  &:hover{
-    transform: scale(1.2)
-  }
+const Bell = styled.img`
 `
 
 export const Navbar = () => {
@@ -138,10 +120,12 @@ export const Navbar = () => {
       </> : 
       <>
         {menuClicked ?
-            <MenuIconDesktop
-            style={{width: "15px"}} src='./assets/cerrar.svg'  onClick={ExitNav}/>
+            null
           :
-          <MenuIconContainer onClick={toggle}>
+          <MenuIconContainer     as={motion.div}
+          initial={{y: -100}}
+          animate={{y: 0}}
+          transition={{duration: 1, delay: 3}} onClick={toggle}>
             <MenuIcon
             as={motion.img}
             initial={{ scaleX: -1 }}
@@ -152,14 +136,32 @@ export const Navbar = () => {
       }
       {isMobile ? null 
       : 
-      <img className='bell' src='./assets/bell.svg' alt='notifications' style={{zIndex: "100"}}/>}
-      <User src='./assets/user.svg'/>
+      <Bell
+        as={motion.img}
+        initial={{y: -100}}
+        animate={{y: 0, transition:{duration: 1, delay: 3.2}}}
+        whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}
+        src='./assets/bell.svg' alt='notifications' style={{zIndex: "100"}}/>}
+        <User
+          as={motion.img}
+          initial={{y: -100}}
+          animate={{y: 0, transition:{duration: 1, delay: 3.4}}}
+          whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}
+          src='./assets/user.svg'/>
       {menuClicked && <BurgerMenu/>}
       <HeaderTitleContainer>
-        <HeaderTitle src='./assets/title.svg'/>
+        <HeaderTitle
+        as={motion.img}
+        initial={{opacity: 0, scale: 0.5}}
+        animate={{opacity: 1, scale: 1, transition:{duration: 2, delay: 0}}}
+        src='./assets/title.svg'/>
         {isMobile ? null
         : 
-        <HeaderButton>
+        <HeaderButton
+          as={motion.div}
+          initial={{y: -100}}
+          animate={{y: 0, transition:{duration: 1, delay: 3}}}
+          whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}>
           <img src="./assets/mainPlus.svg" alt="add button" />
           <p>AGREGAR PELÍCULA</p>  
         </HeaderButton>}

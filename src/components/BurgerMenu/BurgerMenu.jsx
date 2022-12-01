@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { userContext } from '../../context/userContect'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { MainContainer } from '../Dropzone/MainContainer'
@@ -73,9 +74,26 @@ cursor: pointer;
   }
 `
 
-export const BurgerMenu = () => {
+const MenuIconDesktop = styled.img`
+  position: relative;
+  bottom: 70px;
+  width: 17px;
+  z-index: 110;
+  transition: 0.3s;
+  margin-bottom: -17px;
+  margin-right: -17px;
+  padding: 0;
 
+  @media (min-width: 1400px){
+    bottom: 120px;
+  }
+`
+
+export const BurgerMenu = () => {
+  const context = useContext(userContext);
+  const { menuClicked, ExitNav } = context;
   const [isClicked, setIsClicked] = useState(false)
+
 
   return (
     <MenuContainer
@@ -88,7 +106,12 @@ export const BurgerMenu = () => {
         {isClicked ? <MainContainer/>
         : 
         <List>
-          <Li>INICIO</Li>
+
+          <Li>
+            {menuClicked ? <MenuIconDesktop
+            style={{width: "15px"}} src='./assets/cerrar.svg' alt="cerrar menu"  onClick={ExitNav}/> : null}
+            INICIO
+          </Li>
           <Li>SERIES</Li>
           <Li>PELÍCULAS</Li>
           <Li>AGREGADAS RECIENTEMENTE</Li>

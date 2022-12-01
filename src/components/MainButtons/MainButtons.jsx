@@ -53,7 +53,7 @@ const ListButton = styled.button`
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: #24242468;
+    background-color: #242424;
   height: 56px;
   width: 248px;
   font-size: 18px;
@@ -69,6 +69,10 @@ const ListButton = styled.button`
 
   img{
     margin-right: 10px;
+  }
+
+  @media (min-width: 576px){
+    background-color: #24242468;
   }
 `
 

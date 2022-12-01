@@ -18,9 +18,10 @@ const FlexContainer = styled.div`
 
   @media (min-width: 576px){
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-end;
     height: 85vh;
+    padding: 0 10px;
   }
 
   @media (min-width: 768px){
@@ -29,7 +30,7 @@ const FlexContainer = styled.div`
 
   @media (min-width: 992px){
     justify-content: space-between;
-    padding: 0 80px;
+    padding: 0 60px;
   }
 `
 
