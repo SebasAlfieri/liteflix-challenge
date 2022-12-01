@@ -167,12 +167,14 @@ export const PopularItem = (props) => {
 
   return (
     <ItemContainer
-      
+      as={motion.div}
+      variants={itemList}
+      whileTap={{ scale: 0.95 }}
       style={{ backgroundImage: `url('https://image.tmdb.org/t/p/w500/${bg}')`}} onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
       <InnerItems>
         {isHover ? "" :
         <div>
-          <Play> <img src='./assets/itemPlay.svg' alt='movieimage'/></Play>
+          <Play> <img src='./assets/itemplay.svg' alt='movieimage'/></Play>
           <Title>{title}</Title>
         </div>
         }
