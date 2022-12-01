@@ -30,7 +30,7 @@ const MenuContainer = styled.div`
     padding-top: 0;
     z-index: 90;
     overflow-y: auto;
-    }
+  }
 `
 
 const NavContainer = styled.nav`
