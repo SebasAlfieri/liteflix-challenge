@@ -12,6 +12,7 @@ const TitlesContainer = styled.div`
 
   @media (min-width: 576px){
     height: fit-content;
+    align-items: flex-start;
   }
 `
 
@@ -37,11 +38,21 @@ const Title = styled.h2`
   @media (min-width: 576px) {
     font-size: 50px;
     line-height: 50px;
+    text-align: start;
   }
 
   @media (min-width: 768px) {
     font-size: 76px;
-  line-height: 76px;
+    line-height: 76px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 120px;
+    line-height: 100px;
+    margin-top: 0px;
+    margin-bottom: 30px;
   }
 `
 

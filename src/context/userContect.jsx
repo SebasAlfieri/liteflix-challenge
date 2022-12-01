@@ -7,6 +7,7 @@ export default function UserContextProvider(props){
   const [menuClicked, setMenuClicked] = useState(false)
   const [succes, setSucces] = useState(false)
   const [isListo, setIsListo] = useState(false)
+  const [isUserEmpty, setIsUserEmpty] = useState(false)
   const [isLocked, toggle] = useBodyScrollLock()
   const [uploading, setUploading] = useState(false)
   const [userMovie, setUserMovie] = useState({
@@ -51,7 +52,8 @@ export default function UserContextProvider(props){
         succes,
         setSucces,
         uploadedName,
-        setUploadedName
+        setUploadedName,
+        isUserEmpty,
       }}
     >
       {props.children}

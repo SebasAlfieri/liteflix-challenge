@@ -10,6 +10,15 @@ const ButtonsContainer = styled.div`
   flex-direction: column;
   gap: 15px;
   margin-bottom: 20px;
+
+  @media (min-width: 768px){
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 1400px){
+    margin-bottom: 100px;
+  }
 `
 
 const PlayButton = styled.button`
@@ -25,11 +34,11 @@ const PlayButton = styled.button`
     letter-spacing: 4px;
     border: none;
     border: 1px solid #ffffff00;
+    cursor: pointer;
 
     &:hover{
       border: 1px solid #ffffff7f;
-      background-color: white;
-      color: #242424;
+      background-color: #24242468;
     }
 
     img{
@@ -38,28 +47,28 @@ const PlayButton = styled.button`
 `
 
 const ListButton = styled.button`
-    font-family: Bebas neue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: #242424;
-    height: 56px;
-    width: 248px;
-    font-size: 18px;
-    letter-spacing: 4px;
-    border: none;
-    border: 1px solid #ffffff00;
-    border: 1px solid #ffffff7f;
+  font-family: Bebas neue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #24242468;
+  height: 56px;
+  width: 248px;
+  font-size: 18px;
+  letter-spacing: 4px;
+  border: none;
+  border: 1px solid #ffffff7f;
+  cursor: pointer;
 
-    &:hover{
-      background-color: white;
-      color: #242424;
-    }
+  &:hover{
+    background-color: white;
+    color: #242424;
+  }
 
-    img{
-      margin-right: 10px;
-    }
+  img{
+    margin-right: 10px;
+  }
 `
 
 

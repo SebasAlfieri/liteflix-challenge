@@ -34,7 +34,7 @@ const ItemsContainer = styled.div`
   @media (min-width: 576px) {
     justify-content: flex-start;
     height: 100%;
-    width: 100%;
+    width: 241px;
     overflow-y: auto;
     gap: 25px;
     padding-bottom: 15px;
@@ -70,9 +70,10 @@ export const Popular = (props) => {
   const [selected, setSelected] = useState("POPULARES")
   const [data, setData] = useState("")
   const [loading, setLoading] = useState(true)
+  const [isEmpty, setIsEmpty] = useState(false)
 
-  function inputChangeHandler(e){
-    setIsPopularOn(!isPopularOn)
+  if(localArray === []){
+    setIsEmpty(true)
   }
 
   useEffect (() => {
@@ -112,7 +113,7 @@ export const Popular = (props) => {
         }
       </ItemsContainer> 
       :
-      <UserMovieContainer>
+      <ItemsContainer>
         {localArray.map((item, i) => {
           return(
             <UserMovie
@@ -121,8 +122,8 @@ export const Popular = (props) => {
             bg={item.img}/>
           );
         })}
-        <DeleteAll type="button" value="Delete All" onClick={handleDeleteAll}/>
-      </UserMovieContainer>
+        {isEmpty ? "" : <DeleteAll type="button" value="Delete All" onClick={handleDeleteAll}/>}
+      </ItemsContainer>
       
     }
     </PopularContainer>

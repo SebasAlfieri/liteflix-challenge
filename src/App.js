@@ -23,9 +23,13 @@ const FlexContainer = styled.div`
     height: 85vh;
   }
 
+  @media (min-width: 768px){
+    padding: 0 30px;
+  }
+
   @media (min-width: 992px){
     justify-content: space-between;
-    padding: 0 50px;
+    padding: 0 80px;
   }
 `
 
