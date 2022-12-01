@@ -123,14 +123,15 @@ const TitleHover = styled.div`
   }
 `
 
+const itemList = {
+  visible: { x: 0, transition: { duration: 0.7, type: 'tween' } },
+  hidden: { x: 500 }
+};
+
 
 export const UserMovie = (props) => {
   let { bg, title } = props
   const [isHover, setIsHover] = useState(false)
-  const itemList = {
-    visible: { x: 0, transition: { duration: 0.7, type: 'tween' } },
-    hidden: { x: 500 }
-  };
 
 
   return (

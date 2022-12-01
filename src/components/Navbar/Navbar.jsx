@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import useIsMobile from '../../hooks/useIsMobile.ts'
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu'
@@ -14,6 +15,14 @@ const Container = styled.div`
   background-color: transparent;
   width: 90%;
   z-index: 100;
+
+  .bell{
+    transition: 0.3s;
+
+    &:hover{
+      transform: scale(1.2)
+    }
+  }
 
   @media (min-width: 768px){
     justify-content: flex-end;
@@ -34,14 +43,6 @@ const MenuIconContainer = styled.div`
   align-items: center;
   width: 27px;
   height: fit-content;
-
-
-  img{
-    @media (min-width: 768px){
-      transform: scaleX(-1);
-  }
-  }
-
 `
 
 const MenuIcon = styled.img`
@@ -52,9 +53,10 @@ const MenuIcon = styled.img`
 
 const MenuIconDesktop = styled.img`
   position: relative;
-  right: 450px;
+  right: 425px;
   width: 0px;
   z-index: 110;
+  transition: 0.3s;
 `
 
 const HeaderTitleContainer= styled.div`
@@ -87,7 +89,6 @@ const HeaderTitle = styled.img`
   width: 113px;
   justify-content: center;
   align-items: center;
-
 `
 
 const HeaderButton = styled.div`
@@ -107,6 +108,11 @@ letter-spacing: 4px;
 const User = styled.img`
   border-radius: 50%;
   z-index: 100;
+  transition: 0.3s;
+
+  &:hover{
+    transform: scale(1.2)
+  }
 `
 
 export const Navbar = () => {
@@ -132,15 +138,21 @@ export const Navbar = () => {
       </> : 
       <>
         {menuClicked ?
-            <MenuIcon style={{width: "15px"}} src='./assets/cerrar.svg'  onClick={ExitNav}/>
+            <MenuIconDesktop
+            style={{width: "15px"}} src='./assets/cerrar.svg'  onClick={ExitNav}/>
           :
-          <MenuIconContainer>
-            <MenuIcon src='./assets/menu.svg' onClick={ExitNav}/>
+          <MenuIconContainer onClick={toggle}>
+            <MenuIcon
+            as={motion.img}
+            initial={{ scaleX: -1 }}
+            whileHover={{ scale: 1.2, scaleX: -1 }} src='./assets/menu.svg' onClick={ExitNav}/>
           </MenuIconContainer>
           }
       </>
       }
-      {isMobile ? null : <img src='./assets/bell.svg' alt='notifications' style={{zIndex: "91"}}/>}
+      {isMobile ? null 
+      : 
+      <img className='bell' src='./assets/bell.svg' alt='notifications' style={{zIndex: "100"}}/>}
       <User src='./assets/user.svg'/>
       {menuClicked && <BurgerMenu/>}
       <HeaderTitleContainer>

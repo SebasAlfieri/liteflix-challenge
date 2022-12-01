@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 
 const DropdownContainer = styled.div`
@@ -51,7 +52,6 @@ const Arrow = styled.div`
   margin-top:-12px;
   top: 16px;
   left: 80px;
-  transform: rotate(45deg);
   
   @media (min-width: 576px){
     display: flex;
@@ -102,8 +102,15 @@ export const Dropdown = ({selected, setSelected}) => {
       <DropdownBtn onClick={(e) => setIsActive(!isActive)}><span>VER: </span>{selected}<img src='./assets/dropDownArrow.svg' alt='arrow'></img></DropdownBtn>
       {isActive && (
         <>
-        <Arrow/>
-        <DropdownContent>
+        <Arrow
+        style={{rotate: "45deg"}}
+          as={motion.div}
+          initial={{y: -90}}
+          animate={{y: 1, duration: 5, type: 'tween'}}/>
+        <DropdownContent 
+          as={motion.div}
+          initial={{y: -100}}
+          animate={{y: 0, type: 'tween'}}>
           {options.map((option, i) => (
             <DropdownItem 
               onClick={(e) => {

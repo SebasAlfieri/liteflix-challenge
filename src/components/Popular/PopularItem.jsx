@@ -153,17 +153,17 @@ const Date = styled.p`
     left: 130px;
   }
 `
-
+const itemList = {
+  visible: { x: 0, transition: { duration: 0.7, type: 'tween' } },
+  hidden: { x: 500 }
+};
 
 export const PopularItem = (props) => {
   let { bg, title, vote, date } = props
   const [isHover, setIsHover] = useState(false)
   const dateCut = date.substring(0, 4)
 
-  const itemList = {
-    visible: { x: 0, transition: { duration: 0.7, type: 'tween' } },
-    hidden: { x: 500 }
-  };
+
 
   return (
     <ItemContainer

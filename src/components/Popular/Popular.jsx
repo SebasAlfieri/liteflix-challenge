@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import useIsMobile from "../../hooks/useIsMobile.ts";
 import { motion } from "framer-motion";
 import { PopularItem } from "./PopularItem";
 import { Dropdown } from "./Dropdown";
@@ -120,14 +121,28 @@ export const Popular = () => {
       setLoading(false);
     })
   },[])
+  console.log(window.innerWidth)
+  const isMobile = useIsMobile();
+
+  let animVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.7, type: 'tween' }}
+  };
+
+  if (!isMobile) {
+    animVariants = {
+      hidden: { y: 500 },
+      visible: { y: 0, transition: { duration: 0.7, type: 'tween' }}
+    };
+  }
 
   return (
     <PopularContainer
     as={motion.div}
-    initial= {{ x: 500, opacity: 0 }}
-    animate={{ x: 0, opacity: 1}}
+    variants={animVariants}
+    initial="hidden"
+    animate="visible"
     transition={{ delay: 2.5, duration: 0.7, type: 'tween' }}
-
     >
       <Dropdown selected={selected} setSelected={setSelected} setIsPopularOn={setIsPopularOn} isPopularOn={isPopularOn}/>
       {selected === "POPULARES" ? 
