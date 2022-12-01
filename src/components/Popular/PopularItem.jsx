@@ -182,7 +182,7 @@ export const PopularItem = (props) => {
           <HoverBg>
             <PlayHover/>
             <TitleHover>{title}</TitleHover>
-            <Vote><img src="./assets/star.svg" alt="votes" style={{marginRight: "5px"}}/>{vote}</Vote>
+            <Vote><img src="./assets/starvote.svg" alt="votes" style={{marginRight: "5px"}}/>{vote}</Vote>
             <Date>{dateCut}</Date>
           </HoverBg> : ""
         }
