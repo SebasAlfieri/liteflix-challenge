@@ -110,29 +110,36 @@ export const Navbar = () => {
       <>
         {menuClicked ?
         <MenuIconContainer onClick={toggle}>
-          <MenuIcon style={{width: "15px"}} src='./assets/cerrar.svg'  onClick={ExitNav}/>
+          <MenuIcon style={{width: "15px"}} src='./assets/cerrar.svg'
+            as={motion.img}
+            whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}
+            onClick={ExitNav}/>
         </MenuIconContainer> 
         :
         <MenuIconContainer onClick={toggle}>
-          <MenuIcon src='./assets/menu.svg' onClick={ExitNav}/>
+          <MenuIcon src='./assets/menu.svg'
+            as={motion.img}
+            initial={{y: -100}}
+            animate={{y: 0, transition:{duration: 1, delay: 3.4}}}
+            whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}
+            onClick={ExitNav}/>
         </MenuIconContainer>
         }
       </> : 
-      <>
-        {menuClicked ?
-            null
-          :
-          <MenuIconContainer     as={motion.div}
-          initial={{y: -100}}
-          animate={{y: 0}}
-          transition={{duration: 1, delay: 3}} onClick={toggle}>
+          <MenuIconContainer
+            as={motion.div}
+            initial={{y: -100}}
+            animate={{y: 0}}
+            transition={{duration: 1, delay: 3}} onClick={toggle}
+          >
             <MenuIcon
             as={motion.img}
             initial={{ scaleX: -1 }}
-            whileHover={{ scale: 1.2, scaleX: -1 }} src='./assets/menu.svg' onClick={ExitNav}/>
+            whileHover={{ scale: 1.2, scaleX: -1 }}
+            style={{zIndex: 60}}
+            src='./assets/menu.svg'
+            onClick={ExitNav}/>
           </MenuIconContainer>
-          }
-      </>
       }
       {isMobile ? null 
       : 

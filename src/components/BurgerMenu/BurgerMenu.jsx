@@ -76,16 +76,15 @@ cursor: pointer;
 
 const MenuIconDesktop = styled.img`
   position: relative;
-  bottom: 70px;
+  bottom: 0px;
   width: 17px;
   z-index: 110;
   transition: 0.3s;
-  margin-bottom: -17px;
-  margin-right: -17px;
+  margin-bottom: -50px;
   padding: 0;
 
   @media (min-width: 1400px){
-    bottom: 120px;
+    bottom: 90px;
   }
 `
 
@@ -106,12 +105,9 @@ export const BurgerMenu = () => {
         {isClicked ? <MainContainer/>
         : 
         <List>
-
-          <Li>
-            {menuClicked ? <MenuIconDesktop
-            style={{width: "15px"}} src='./assets/cerrar.svg' alt="cerrar menu"  onClick={ExitNav}/> : null}
-            INICIO
-          </Li>
+          {menuClicked ? <MenuIconDesktop
+          style={{width: "15px"}} src='./assets/cerrar.svg' alt="cerrar menu" onClick={ExitNav}/> : null}
+          <Li>INICIO</Li>
           <Li>SERIES</Li>
           <Li>PELÍCULAS</Li>
           <Li>AGREGADAS RECIENTEMENTE</Li>
