@@ -143,7 +143,7 @@ export const UserMovie = (props) => {
       <InnerItems>
       {isHover ? "" :
         <div>
-          <Play> <img src='./assets/itemPlay.svg' alt='movieimage'/></Play>
+          <Play> <img src='./assets/play-item.svg' alt='movieimage'/></Play>
           <Title>{title}</Title>
         </div>
         }
