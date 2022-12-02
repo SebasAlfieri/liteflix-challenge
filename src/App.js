@@ -5,6 +5,7 @@ import { Titles } from './components/Titles/Titles';
 import { MainButtons } from './components/MainButtons/MainButtons';
 import { Popular } from "./components/Popular/Popular"
 import { Background } from './components/Background/Background';
+import { DropzoneDesktop } from './components/Dropzone/DropzoneDesktop';
 import UserContextProvider from './context/userContect';
 
 const HomeContainer = styled.div`
@@ -48,8 +49,11 @@ const TitleContainer = styled.div`
 var x = Math.floor(Math.random() * 7)
 
 function App() {
+
+
   return (
     <UserContextProvider>
+      <DropzoneDesktop/>
       <HomeContainer>
         <Background random={x}/>
         <Navbar/>
@@ -59,6 +63,7 @@ function App() {
             <MainButtons/>
           </TitleContainer>
           <Popular/>
+          
         </FlexContainer>
       </HomeContainer>
     </UserContextProvider>

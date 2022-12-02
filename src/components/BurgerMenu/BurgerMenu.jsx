@@ -51,16 +51,16 @@ const NavContainer = styled.nav`
 `
 
 const List = styled.ul`
-padding-left: 0;
-display: flex;
-flex-direction: column;
-gap: 40px;
-list-style: none;
-font-weight: 300;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  list-style: none;
+  font-weight: 300;
 
-@media (min-width: 768px){
-  gap: 27px;
-  }
+  @media (min-width: 768px){
+    gap: 27px;
+    }
 
   @media (min-width: 1400px){
   gap: 38px;
@@ -69,7 +69,11 @@ font-weight: 300;
 `
 
 const Li = styled.li`
-cursor: pointer;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
   &:hover{
     font-weight: 400;
   }
@@ -91,10 +95,14 @@ const MenuIconDesktop = styled.img`
 
 export const BurgerMenu = () => {
   const context = useContext(userContext);
-  const { menuClicked, ExitNav } = context;
+  const { menuClicked, ExitNav, setDropzoneDesktop } = context;
   const [isClicked, setIsClicked] = useState(false)
   const isMobile = useIsMobile();
 
+  function dropExitNav() {
+    ExitNav()
+    setDropzoneDesktop(true)
+  }
 
   return (
     <MenuContainer
@@ -112,7 +120,6 @@ export const BurgerMenu = () => {
               {menuClicked ? <MenuIconDesktop style={{width: "15px"}} src='./assets/cerrar.svg' alt="cerrar menu" onClick={ExitNav}/> : null}
             </>
           }
-          
           <Li>INICIO</Li>
           <Li>SERIES</Li>
           <Li>PELÍCULAS</Li>
@@ -120,7 +127,13 @@ export const BurgerMenu = () => {
           <Li>POPULARES</Li>
           <Li>MIS PELÍCULAS</Li>
           <Li>MI LISTA</Li>
-          <Li style={{marginTop: "20px", fontWeight: "500"}} onClick={(e) => setIsClicked(true)}><img src="./assets/mainPlus.svg" alt="plusSymbol" /> AGREGAR PELÍCULA</Li>
+          {isMobile ? <Li style={{marginTop: "20px", fontWeight: "500"}} onClick={(e) => setIsClicked(true)}>
+            <img src="./assets/mainPlus.svg" alt="plusSymbol" /> AGREGAR PELÍCULA
+          </Li>
+          :
+          <Li style={{marginTop: "20px", fontWeight: "500"}} onClick={(e) => dropExitNav()}>
+            <img src="./assets/mainPlus.svg" alt="plusSymbol" /> AGREGAR PELÍCULA
+          </Li>}
           <Li style={{marginTop: "20px"}}>CERRAR SESIÓN</Li>
         </List>}
       </NavContainer>

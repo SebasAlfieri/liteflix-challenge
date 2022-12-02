@@ -17,11 +17,23 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   padding-top: 30px;
+
+  @media (min-width: 768px){
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    align-self: center;
+  }
 `
 
 const Title = styled.h2`
   color: #64EEBC;
   font-size: 22px;
+
+  @media (min-width: 768px){
+    margin-bottom: 50px;
+  }
 `
 
 export const MainContainer = () => {

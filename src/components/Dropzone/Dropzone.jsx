@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { userContext } from '../../context/userContect'
+import useIsMobile from '../../hooks/useIsMobile.ts'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -12,6 +13,15 @@ const Container = styled.div`
   border: 2px dashed white;
   padding: 20px;
   margin-top: -40px;
+  cursor: pointer;
+  &:hover{
+    background-color: #3b3b3b;
+  }
+
+  @media (min-width: 768px){
+    width: 600px;
+    height: 55px;
+  }
 `
 
 const Input = styled.input`
@@ -47,7 +57,8 @@ function Dropzone() {
   }, [userMovie])
   
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, maxFiles: 1,})
-
+  const isMobile = useIsMobile();
+  
   return (
     <Container {...getRootProps()}>
       <Input {...getInputProps()} />
@@ -57,7 +68,9 @@ function Dropzone() {
           <p>Suelta el archivo aquí</p> :
           <>
             <img src="./assets/dropzoneClip.svg" alt="clip" />
-            <p>Agregá un archivo</p>
+
+            {isMobile ? <p>Agregá un archivo</p> : <p>Agregá un archivo o arrastralo y soltalo aquí</p>}
+            
           </>
       }
       </TextIconContainer>

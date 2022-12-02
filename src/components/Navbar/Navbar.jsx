@@ -82,6 +82,7 @@ letter-spacing: 4px;
   justify-content:center;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 
   p{
     width: fit-content;
@@ -99,7 +100,7 @@ const Bell = styled.img`
 
 export const Navbar = () => {
   const context = useContext(userContext);
-  const { menuClicked, ExitNav, toggle } = context;
+  const { menuClicked, ExitNav, toggle, setDropdownDesktop, openDrop } = context;
   const isMobile = useIsMobile();
 
   console.log(isMobile)
@@ -168,7 +169,8 @@ export const Navbar = () => {
           as={motion.div}
           initial={{y: -100}}
           animate={{y: 0, transition:{duration: 1, delay: 3}}}
-          whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}>
+          whileHover={{ scale: 1.2, transition:{delay: 0, duration: 0.2}}}
+          onClick={(e) => openDrop()}>
           <img src="./assets/mainPlus.svg" alt="add button" />
           <p>AGREGAR PELÍCULA</p>  
         </HeaderButton>}

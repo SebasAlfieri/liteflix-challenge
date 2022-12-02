@@ -10,6 +10,7 @@ export default function UserContextProvider(props){
   const [isUserEmpty, setIsUserEmpty] = useState(false)
   const [isLocked, toggle] = useBodyScrollLock()
   const [uploading, setUploading] = useState(false)
+  const [dropzoneDesktop, setDropzoneDesktop] = useState(false)
   const [userMovie, setUserMovie] = useState({
     img: "",
     title: ""
@@ -29,8 +30,14 @@ export default function UserContextProvider(props){
     console.log("menu -->", menuClicked)
   }
 
+  const openDrop = () => {
+    setDropzoneDesktop(true)
+    console.log(dropzoneDesktop)
+  }
 
-
+  const exitDrop = () => {
+    setDropzoneDesktop(false)
+  }
 
   return (
     <userContext.Provider
@@ -54,6 +61,11 @@ export default function UserContextProvider(props){
         uploadedName,
         setUploadedName,
         isUserEmpty,
+        setIsUserEmpty,
+        dropzoneDesktop,
+        setDropzoneDesktop,
+        openDrop,
+        exitDrop
       }}
     >
       {props.children}

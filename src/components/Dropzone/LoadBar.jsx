@@ -14,13 +14,17 @@ const LoadContainer = styled.div`
 `
 
 const TextCargando = styled.p`
-    position: relative;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-    width: 0;
-    bottom: 30px;
-    white-space: nowrap;
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  bottom: 30px;
+  white-space: nowrap;
+
+  @media (min-width: 768px){
+    font-size: 16px;
+  }
 `
 
 const TextListo = styled.p`
@@ -46,10 +50,15 @@ const StaticBar = styled.div`
   background-color: #919191;
   height: 4px;
   width: 350px;
+
+  @media (min-width: 768px){
+      width: 600px
+    }
 `
 
 const LoadingBar = styled.div`
-  position: absolute;
+  position: relative;
+  bottom: 2px;
   background-color: #64EEBC;
   height: 8px;
   width: 0;
@@ -87,12 +96,12 @@ export const LoadBar = () => {
       <TextCargando>CARGANDO {counter}%</TextCargando>
       {isListo && <TextListo>¡LISTO!</TextListo>}
       <BarsContainer>
-        <StaticBar/>
-        <LoadingBar
+        <StaticBar><LoadingBar
           as={motion.div}
           initial={{ width: 0 }}
-          animate={{ width: "350px"}}
-          transition={{ delay: 0.1, duration: 4 }}/>
+          animate={{ width: "100%"}}
+          transition={{ delay: 0.1, duration: 4 }}/></StaticBar>
+        
       </BarsContainer>
     </LoadContainer>
   )

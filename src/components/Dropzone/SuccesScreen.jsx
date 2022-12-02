@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { userContext } from '../../context/userContect'
+import useIsMobile from '../../hooks/useIsMobile.ts'
 
 const Container = styled.div`
   position: absolute;
@@ -13,7 +14,16 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   padding-top: 30px;
-background-color: #242424;
+  background-color: #242424;
+
+  @media (min-width: 768px){
+    width: 730px;
+    height: 440px;
+    padding-top: 0;
+    right: auto;
+    left: auto;
+    top: unset;
+  }
 `
 
 const TextContainer = styled.div`
@@ -37,28 +47,35 @@ const Text = styled.p`
 
 const Input = styled.input`
   font-family: Bebas Neue;
-  color: white;
+  color: #242424;
   font-size: 18px;
   padding: 20px;
   width: 248px;
   letter-spacing: 4px;
-  background-color: #242424;
+  background-color: white;
   border: 1px solid #919191;
 
   &:hover{
-    background-color: white;
-    color: #242424;
+    background-color: #919191;
   }
 `
 
 export const SuccesScreen = () => {
 
   const context = useContext(userContext);
-  const { uploadedName, setSucces, setMenuClicked, toggle } = context;
+  const { uploadedName, setSucces, setMenuClicked, toggle, exitDrop, setIsListo } = context;
+  const isMobile = useIsMobile();
 
   function ExitSucces(){
     setSucces(false)
     setMenuClicked(false)
+    setIsListo(false)
+  }
+
+  function ExitSuccesDesktop(){
+    setSucces(false)
+    setIsListo(false)
+    exitDrop()
   }
 
   return (
@@ -67,9 +84,16 @@ export const SuccesScreen = () => {
         <Congrats>¡FELICITACIONES!</Congrats>
         <Text>{uploadedName} FUE CORRECTAMENTE SUBIDA.</Text>
       </TextContainer>
+      {isMobile ? 
       <div onClick={toggle}>
-        <Input type="button" value="IR A HOME" onClick={ExitSucces}/>
+      <Input type="button" value="IR A HOME" onClick={ExitSucces}/>
       </div>
+      :
+      <div onClick={toggle}>
+      <Input type="button" value="IR A HOME" onClick={ExitSuccesDesktop}/>
+      </div>
+      }
+      
     </Container>
   )
 }
