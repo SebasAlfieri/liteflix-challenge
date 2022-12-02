@@ -90,7 +90,7 @@ const PlayHover = styled.div`
     height: 27px;
     border-radius: 50%;
     
-    background-image: url(./assets/playHoverOff.svg);
+    background-image: url(./assets/play-hover-off.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -174,7 +174,7 @@ export const PopularItem = (props) => {
       <InnerItems>
         {isHover ? "" :
         <div>
-          <Play> <img src='./assets/itemplay.svg' alt='movieimage'/></Play>
+          <Play> <img src='./assets/play-item.svg' alt='movieimage'/></Play>
           <Title>{title}</Title>
         </div>
         }
