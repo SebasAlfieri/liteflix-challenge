@@ -77,7 +77,7 @@ cursor: pointer;
 
 const MenuIconDesktop = styled.img`
   position: relative;
-  bottom: 0px;
+  bottom: 60px;
   width: 17px;
   z-index: 110;
   transition: 0.3s;
