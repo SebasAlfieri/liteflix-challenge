@@ -52,6 +52,10 @@ const StaticBar = styled.div`
   width: 350px;
 
   @media (min-width: 768px){
+      width: 400px
+    }
+
+  @media (min-width: 1400px){
       width: 600px
     }
 `

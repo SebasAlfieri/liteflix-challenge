@@ -23,9 +23,14 @@ const Background = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 730px;
-  height: 440px;
+  width: 600px;
+  height: 350px;
   background-color: #242424;
+
+  @media (min-width: 1400px){
+    width: 730px;
+    height: 440px;
+  }
 `
 
 const DropDesktopExitBtn = styled.img`
@@ -33,9 +38,14 @@ const DropDesktopExitBtn = styled.img`
   width: 17px;
   height: 17px;
   margin-bottom: -17px;
-  left: 320px;
+  left: 270px;
   top: 25px;
   transition: 0.3s;
+
+  @media (min-width: 1400px){
+    left: 320px;
+  top: 25px;
+  }
 
   &:hover{
     transform: scale(1.2);

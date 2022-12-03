@@ -19,6 +19,12 @@ const Container = styled.div`
   }
 
   @media (min-width: 768px){
+    width: 400px;
+    height: 55px;
+    text-align: center;
+  }
+
+  @media (min-width: 1400px){
     width: 600px;
     height: 55px;
   }
