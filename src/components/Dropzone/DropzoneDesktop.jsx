@@ -44,7 +44,7 @@ const DropDesktopExitBtn = styled.img`
 
   @media (min-width: 1400px){
     left: 320px;
-  top: 25px;
+    top: 25px;
   }
 
   &:hover{
