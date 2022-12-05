@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
-import { userContext } from '../../context/userContect'
-import useIsMobile from '../../hooks/useIsMobile.ts'
+import React, { useState, useContext } from "react";
+import styled from "styled-components";
+import { userContext } from "../../context/userContect";
+import useIsMobile from "../../hooks/useIsMobile.ts";
 
 const FormContainer = styled.form`
   display: flex;
@@ -9,7 +9,7 @@ const FormContainer = styled.form`
   justify-content: space-between;
   width: 250px;
   gap: 30px;
-`
+`;
 
 const InputText = styled.input`
   font-family: Bebas Neue;
@@ -24,14 +24,14 @@ const InputText = styled.input`
   height: fit-content;
   margin-bottom: 50px;
 
-  &::placeholder{
+  &::placeholder {
     color: white;
   }
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     margin-bottom: 20px;
   }
-`
+`;
 
 const Input = styled.input`
   font-family: Bebas Neue;
@@ -43,11 +43,11 @@ const Input = styled.input`
   background-color: white;
   border: 1px solid #919191;
 
-  &:hover{
+  &:hover {
     background-color: #919191;
     color: #242424;
   }
-`
+`;
 
 const InputSalir = styled.input`
   font-family: Bebas Neue;
@@ -59,66 +59,71 @@ const InputSalir = styled.input`
   background-color: #242424;
   border: 1px solid #919191;
 
-  &:hover{
+  &:hover {
     background-color: white;
     color: #242424;
   }
-`
+`;
 
 const Toggle = styled.div`
   width: fit-content;
   height: fit-content;
   width: 250px;
   background-color: #fff;
-`
+`;
 
 export const TextInput = () => {
-
   const context = useContext(userContext);
-  const { ExitNav, toggle, userMovie, moviesArray, localArray, setUploading, setUploadedName } = context;
+  const {
+    ExitNav,
+    toggle,
+    userMovie,
+    moviesArray,
+    localArray,
+    setUploading,
+    setUploadedName,
+  } = context;
   const [movieTitle, setMovieTitle] = useState("");
   const isMobile = useIsMobile();
 
   function inputChangeHandler(evento) {
     let value = evento.target.value;
-    setMovieTitle(value)
+    setMovieTitle(value);
   }
 
-  function handleSubmit(event){
+  function handleSubmit(event) {
     event.preventDefault();
-    userMovie.title = movieTitle
+    userMovie.title = movieTitle;
 
-    if (userMovie.img !== ""){
-      moviesArray.push(userMovie)
-      localArray.push(userMovie)
-      setUploadedName(userMovie.title)
-      localStorage.setItem("userMovies", JSON.stringify(localArray))
-      setUploading(true)
-
+    if (userMovie.img !== "") {
+      moviesArray.push(userMovie);
+      localArray.push(userMovie);
+      setUploadedName(userMovie.title);
+      localStorage.setItem("userMovies", JSON.stringify(localArray));
+      setUploading(true);
     } else {
-      alert("Por favor suba una imagen")
+      alert("Por favor suba una imagen");
     }
   }
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <InputText 
+      <InputText
         minLength={3}
         maxLength={30}
         type="text"
         onChange={inputChangeHandler}
-        placeholder='TÍTULO'
+        placeholder="TÍTULO"
         value={movieTitle}
         name="title"
         required
-        />
-      <Input type="submit" placeholder='TÍTULO' value='SUBIR PELÍCULA'/>
-      {isMobile && 
+      />
+      <Input type="submit" placeholder="TÍTULO" value="SUBIR PELÍCULA" />
+      {isMobile && (
         <Toggle onClick={toggle}>
-          <InputSalir type="button" value="SALIR" onClick={ExitNav}/>
+          <InputSalir type="button" value="SALIR" onClick={ExitNav} />
         </Toggle>
-      }
-      
+      )}
     </FormContainer>
-  )
-}
+  );
+};

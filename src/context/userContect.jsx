@@ -1,43 +1,42 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext } from "react";
 import useBodyScrollLock from "../hooks/useBodyScrollLock";
 
 const userContext = createContext();
 
-export default function UserContextProvider(props){
-  const [menuClicked, setMenuClicked] = useState(false)
-  const [succes, setSucces] = useState(false)
-  const [isListo, setIsListo] = useState(false)
-  const [isUserEmpty, setIsUserEmpty] = useState(false)
-  const [isLocked, toggle] = useBodyScrollLock()
-  const [uploading, setUploading] = useState(false)
-  const [dropzoneDesktop, setDropzoneDesktop] = useState(false)
+export default function UserContextProvider(props) {
+  const [menuClicked, setMenuClicked] = useState(false);
+  const [succes, setSucces] = useState(false);
+  const [isListo, setIsListo] = useState(false);
+  const [isUserEmpty, setIsUserEmpty] = useState(false);
+  const [isLocked, toggle] = useBodyScrollLock();
+  const [uploading, setUploading] = useState(false);
+  const [dropzoneDesktop, setDropzoneDesktop] = useState(false);
   const [userMovie, setUserMovie] = useState({
     img: "",
-    title: ""
-  })
-  let moviesArray = []
-  let localString = localStorage.getItem("userMovies")
-  let localArray = JSON.parse(localString)
+    title: "",
+  });
+  let moviesArray = [];
+  let localString = localStorage.getItem("userMovies");
+  let localArray = JSON.parse(localString);
 
-  if (localArray === null){
-    localArray = []
+  if (localArray === null) {
+    localArray = [];
   }
-  const [uploadedName, setUploadedName] = useState("")
-
+  const [uploadedName, setUploadedName] = useState("");
 
   const ExitNav = () => {
-    setMenuClicked(!menuClicked)
-    console.log("menu -->", menuClicked)
-  }
+    setMenuClicked(!menuClicked);
+    console.log("menu -->", menuClicked);
+  };
 
   const openDrop = () => {
-    setDropzoneDesktop(true)
-    console.log(dropzoneDesktop)
-  }
+    setDropzoneDesktop(true);
+    console.log(dropzoneDesktop);
+  };
 
   const exitDrop = () => {
-    setDropzoneDesktop(false)
-  }
+    setDropzoneDesktop(false);
+  };
 
   return (
     <userContext.Provider
@@ -65,20 +64,12 @@ export default function UserContextProvider(props){
         dropzoneDesktop,
         setDropzoneDesktop,
         openDrop,
-        exitDrop
+        exitDrop,
       }}
     >
       {props.children}
     </userContext.Provider>
   );
 }
-
-
-
-
-
-
-
-
 
 export { userContext };

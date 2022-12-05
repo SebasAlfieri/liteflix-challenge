@@ -1,19 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export const useBodyScrollLock = () => {
+  const bodyStyle = document.body.style;
 
-  const bodyStyle = document.body.style
-
-  const [isLocked, setIsLocked] = useState(bodyStyle.overflowY === 'hidden')
+  const [isLocked, setIsLocked] = useState(bodyStyle.overflowY === "hidden");
 
   useEffect(() => {
-    bodyStyle.overflowY = isLocked ? 'hidden' : 'auto'
-  }, [isLocked, bodyStyle])
+    bodyStyle.overflowY = isLocked ? "hidden" : "auto";
+  }, [isLocked, bodyStyle]);
 
-  const toggle =() => setIsLocked(!isLocked)
+  const toggle = () => setIsLocked(!isLocked);
 
+  return [isLocked, toggle];
+};
 
-  return [isLocked, toggle]
-}
-
-export default useBodyScrollLock
+export default useBodyScrollLock;

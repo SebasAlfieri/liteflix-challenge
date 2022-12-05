@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const TitlesContainer = styled.div`
   height: 420px;
@@ -11,11 +11,11 @@ const TitlesContainer = styled.div`
   justify-content: flex-end;
   margin-bottom: 10px;
 
-  @media (min-width: 576px){
+  @media (min-width: 576px) {
     height: fit-content;
     align-items: flex-start;
   }
-`
+`;
 
 const Subtitle = styled.p`
   color: white;
@@ -23,13 +23,13 @@ const Subtitle = styled.p`
   font-weight: 300;
   letter-spacing: 4px;
 
-  span{
+  span {
     font-weight: 500;
   }
-`
+`;
 
 const Title = styled.h2`
-  color: #64EEBC;
+  color: #64eebc;
   font-weight: 700;
   font-size: 76px;
   line-height: 76px;
@@ -63,42 +63,53 @@ const Title = styled.h2`
     margin-top: 0px;
     margin-bottom: 30px;
   }
-`
+`;
 
 export const Titles = (props) => {
+  let { random } = props;
+  const [data, setData] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  let { random } = props
-  const [data, setData] = useState("")
-  const [loading, setLoading] = useState(true)
-
-  useEffect (() => {
-    fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20')
-    .then(response => {
-      if(response.ok) {
-        return response.json()
-      }
-      throw response;
-    })
-    .then(data => {
-      setData(data)
-    })
-    .finally (() =>{
-      setLoading(false);
-    })
-  },[])
+  useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=6f26fd536dd6192ec8a57e94141f8b20"
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => {
+        setData(data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <TitlesContainer>
       <Subtitle
-      as={motion.p}
-      initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 2.2,  type: 'tween' }} >ORIGINAL DE <span>LITEFLIX</span></Subtitle>
-      {loading ? "" : <Title
-      as={motion.div}
-      initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 2,  type: 'tween' }} >{data.results[random].original_title}</Title>}
+        as={motion.p}
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.2, type: "tween" }}
+      >
+        ORIGINAL DE <span>LITEFLIX</span>
+      </Subtitle>
+      {loading ? (
+        ""
+      ) : (
+        <Title
+          as={motion.div}
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, type: "tween" }}
+        >
+          {data.results[random].original_title}
+        </Title>
+      )}
     </TitlesContainer>
-  )
-}
+  );
+};

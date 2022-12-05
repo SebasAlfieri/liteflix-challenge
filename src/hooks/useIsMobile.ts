@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -7,13 +7,12 @@ const useIsMobile = () => {
     setIsMobile(window.innerWidth < 768);
   }
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
       handleResize();
 
-      return () => window.removeEventListener('resize', handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }
   }, []);
 
