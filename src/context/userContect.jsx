@@ -26,12 +26,10 @@ export default function UserContextProvider(props) {
 
   const ExitNav = () => {
     setMenuClicked(!menuClicked);
-    console.log("menu -->", menuClicked);
   };
 
   const openDrop = () => {
     setDropzoneDesktop(true);
-    console.log(dropzoneDesktop);
   };
 
   const exitDrop = () => {

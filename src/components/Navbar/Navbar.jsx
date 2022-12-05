@@ -150,11 +150,9 @@ const Bell = styled.img`
 
 export const Navbar = () => {
   const context = useContext(userContext);
-  const { menuClicked, ExitNav, toggle, setDropdownDesktop, openDrop } =
+  const { menuClicked, ExitNav, toggle, openDrop } =
     context;
   const isMobile = useIsMobile();
-
-  console.log(isMobile);
 
   return (
     <Container>

@@ -124,7 +124,6 @@ export const Popular = () => {
         setLoading(false);
       });
   }, []);
-  console.log(window.innerWidth);
 
   let animVariants = {
     hidden: { y: 1500, opacity: 0 },
