@@ -70,6 +70,7 @@ const DeleteAll = styled.input`
   font-family: Bebas Neue;
   background-color: #353535;
   border: none;
+  cursor: pointer;
 `;
 
 function handleDeleteAll() {

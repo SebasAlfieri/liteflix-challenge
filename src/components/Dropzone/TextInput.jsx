@@ -96,11 +96,15 @@ export const TextInput = () => {
     userMovie.title = movieTitle;
 
     if (userMovie.img !== "") {
-      moviesArray.push(userMovie);
-      localArray.push(userMovie);
-      setUploadedName(userMovie.title);
-      localStorage.setItem("userMovies", JSON.stringify(localArray));
       setUploading(true);
+
+      setTimeout(() => {
+        moviesArray.push(userMovie);
+        localArray.push(userMovie);
+        setUploadedName(userMovie.title);
+        localStorage.setItem("userMovies", JSON.stringify(localArray));
+      }, 4000)
+
     } else {
       alert("Por favor suba una imagen");
     }
