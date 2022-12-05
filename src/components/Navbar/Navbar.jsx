@@ -89,6 +89,31 @@ const HeaderButton = styled.div`
   }
 `;
 
+const UserContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+
+
+  &:before{
+    content: '';
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    border: 0px solid #64eebc;
+    transition: 0.3s;
+    transition-timing-function: ease-out;
+  }
+
+  &:hover:before{
+    border: 8px solid #64eebc;
+  }
+`
+
 const User = styled.img`
   border-radius: 50%;
   z-index: 100;
@@ -169,13 +194,15 @@ export const Navbar = () => {
           style={{ zIndex: "100" }}
         />
       )}
-      <User
-        as={motion.img}
-        initial={{ y: -100 }}
-        animate={{ y: 0, transition: { duration: 1, delay: 3.4 } }}
-        whileHover={{ scale: 1.2, transition: { delay: 0, duration: 0.2 } }}
-        src="./assets/user.svg"
-      />
+      <UserContainer>
+        <User
+          as={motion.img}
+          initial={{ y: -100 }}
+          animate={{ y: 0, transition: { duration: 1, delay: 3.4 } }}
+          whileHover={{ scale: 1.2, transition: { delay: 0, duration: 0.2 } }}
+          src="./assets/user.svg"
+        />
+      </UserContainer>
       {menuClicked && <BurgerMenu />}
       <HeaderTitleContainer>
         <HeaderTitle

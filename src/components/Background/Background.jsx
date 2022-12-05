@@ -12,6 +12,15 @@ const BackgroundPic = styled.div`
   width: 100%;
   box-shadow: 0 -100px 100px 50px #242424 inset;
 
+  &:after{
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    height: 5px;
+    background-color: #242424;
+  }
+
   @media (min-width: 576px) {
     height: 100vh;
   }
