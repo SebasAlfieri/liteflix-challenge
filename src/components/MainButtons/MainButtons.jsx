@@ -40,7 +40,6 @@ const PlayButton = styled.button`
     border: 1px solid #ffffff7f;
     background-color: #24242468;
   }
-  
 
   img {
     margin-right: 10px;
@@ -61,7 +60,6 @@ const ListButton = styled.button`
   letter-spacing: 4px;
   border: 1px solid #ffffff7f;
   cursor: pointer;
-  
 
   &:hover {
     background-color: #64eebc;
@@ -69,25 +67,25 @@ const ListButton = styled.button`
     transition: 0.5s ease;
   }
 
-  &:after{
-  position: absolute;
-  content: "";
-  width: 0;
-  height: 100%;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  background: #64eebc;
-  transition: all 0.3s ease;
-  transition: 0.3s ease;
+  &:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background: #64eebc;
+    transition: all 0.3s ease;
+    transition: 0.3s ease;
   }
 
-  &:hover:after{
-  left: 0;
-  width: 100%;
+  &:hover:after {
+    left: 0;
+    width: 100%;
   }
 
-  &:hover > img{
+  &:hover > img {
     filter: invert(1);
   }
 

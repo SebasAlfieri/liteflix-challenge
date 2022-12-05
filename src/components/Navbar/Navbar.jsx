@@ -77,6 +77,7 @@ const HeaderTitle = styled.img`
 const HeaderButton = styled.div`
   color: white;
   letter-spacing: 4px;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,8 +85,32 @@ const HeaderButton = styled.div`
   cursor: pointer;
 
   p {
+    display: flex;
     width: fit-content;
     white-space: nowrap;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: start;
+    width: 0px;
+    height: 30px;
+    background-color: #64eebc;
+    transition: 0.2s;
+    z-index: -5;
+  }
+
+  &:hover:before {
+    width: 220px;
+  }
+
+  &:hover > p {
+    color: #242424;
+  }
+
+  &:hover > img {
+    filter: invert(1);
   }
 `;
 
@@ -97,9 +122,8 @@ const UserContainer = styled.div`
   height: fit-content;
   background-color: transparent;
 
-
-  &:before{
-    content: '';
+  &:before {
+    content: "";
     position: absolute;
     height: 36px;
     width: 36px;
@@ -109,10 +133,10 @@ const UserContainer = styled.div`
     transition-timing-function: ease-out;
   }
 
-  &:hover:before{
+  &:hover:before {
     border: 8px solid #64eebc;
   }
-`
+`;
 
 const User = styled.img`
   border-radius: 50%;
@@ -220,7 +244,6 @@ export const Navbar = () => {
             as={motion.div}
             initial={{ y: -100 }}
             animate={{ y: 0, transition: { duration: 1, delay: 3 } }}
-            whileHover={{ scale: 1.2, transition: { delay: 0, duration: 0.2 } }}
             onClick={(e) => openDrop()}
           >
             <img src="./assets/mainPlus.svg" alt="add button" />
